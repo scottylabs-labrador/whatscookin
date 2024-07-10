@@ -16,7 +16,7 @@ On CMU network:
     npx expo start --tunnel
    ```
 Otherwise, can just do: 
-    ```bash
+   ```bash
     npx expo start
    ```
 In the output, you'll find options to open the app in a
