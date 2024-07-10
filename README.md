@@ -11,11 +11,11 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    ```
 
 2. Start the app
-On CMU network:
+- On CMU network:
    ```bash
     npx expo start --tunnel
    ```
-Otherwise, can just do: 
+- Otherwise, can just do: 
    ```bash
     npx expo start
    ```
