@@ -5,27 +5,25 @@ import { ThemedView } from '@/components/ThemedView';
 // export default function ProfileScreen() {
 // }
 
-
 import { SignedIn, SignedOut, useUser } from "@clerk/clerk-expo";
 import { Link } from "expo-router";
-import { Text, View } from "react-native";
 
 export default function ProfileScreen() {
   const { user } = useUser();
 
   return (
-    <View>
+    <ThemedView>
       <SignedIn>
-        <Text>Hello {user?.emailAddresses[0].emailAddress}</Text>
+        <ThemedText>Hello {user?.emailAddresses[0].emailAddress}</ThemedText>
       </SignedIn>
       <SignedOut>
         <Link href="/sign-in">
-          <Text>Sign In</Text>
+          <ThemedText>Sign In</ThemedText>
         </Link>
         <Link href="/sign-up">
-          <Text>Sign Up</Text>
+          <ThemedText>Sign Up</ThemedText>
         </Link>
       </SignedOut>
-    </View>
+    </ThemedView>
   );
 }
