@@ -32,6 +32,7 @@ export default function TabLayout() {
           ),
         }}
       />
+      
       {/* hide Login page from tab bar */}
       <Tabs.Screen
         name="login"
@@ -44,13 +45,13 @@ export default function TabLayout() {
       />
       {/* TODO: DELETE THE BELOW CODE FOR FINAL BOILERPLATE */}
       <Tabs.Screen
-        name="index"
+        name="index - default"
         options={{
           href: null,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="explore - default"
         options={{
           href: null,
         }}
