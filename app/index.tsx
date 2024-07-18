@@ -1,8 +1,8 @@
 import React from "react";
 import * as WebBrowser from "expo-web-browser";
 import { Text, View, Button } from "react-native";
-import { Link } from "expo-router";
-import { useOAuth } from "@clerk/clerk-expo";
+import { Link, Redirect, Stack } from "expo-router";
+import { useAuth, useOAuth } from "@clerk/clerk-expo";
 import * as Linking from "expo-linking"
 
 export const useWarmUpBrowser = () => {
@@ -26,7 +26,7 @@ const LoginScreen = () => {
   const onPress = React.useCallback(async () => {
     try {
       const { createdSessionId, signIn, signUp, setActive } =
-        await startOAuthFlow({ redirectUrl: Linking.createURL("/dashboard", { scheme: "myapp" })});
+        await startOAuthFlow({ redirectUrl: Linking.createURL("/profile", { scheme: "myapp" })});
 
       if (createdSessionId) {
         setActive!({ session: createdSessionId });
@@ -37,6 +37,13 @@ const LoginScreen = () => {
       console.error("OAuth error", err);
     }
   }, []);
+
+  const { isSignedIn } = useAuth();
+  if (isSignedIn) {
+    return (
+      <Redirect href="profile" />
+    )
+  }
 
   return (
     <View>

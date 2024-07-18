@@ -34,7 +34,7 @@ export default function TabLayout() {
       />
       
       {/* hide Login page from tab bar */}
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="login"
         options={{
         title: 'login',
@@ -42,9 +42,9 @@ export default function TabLayout() {
           <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
         ),
         }}
-      />
+      /> */}
       {/* TODO: DELETE THE BELOW CODE FOR FINAL BOILERPLATE */}
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name="index - default"
         options={{
           href: null,
@@ -61,7 +61,7 @@ export default function TabLayout() {
         options={{
           href: null,
         }}
-      />
+      /> */}
     </Tabs>
   );
 }
