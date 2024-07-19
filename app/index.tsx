@@ -5,6 +5,7 @@ import { Link, Redirect, Stack } from "expo-router";
 import { useAuth, useOAuth } from "@clerk/clerk-expo";
 import * as Linking from "expo-linking"
 import { SafeAreaView } from "react-native-safe-area-context";
+import { ThemedView } from "@/components/ThemedView";
 
 export const useWarmUpBrowser = () => {
   React.useEffect(() => {
@@ -47,14 +48,16 @@ const LoginScreen = () => {
   }
 
   return (
-    <SafeAreaView>
-      <View>
-        <Link href="/">
-          <Text>Home</Text>
-        </Link>
-        <Button title="Sign in with Google" onPress={onPress} />
-      </View>
-    </SafeAreaView>
+    <ThemedView style={{flex: 1}}>
+      <SafeAreaView>
+        <View>
+          <Link href="/">
+            <Text>Home</Text>
+          </Link>
+          <Button title="Sign in with Google" onPress={onPress} />
+        </View>
+      </SafeAreaView>
+    </ThemedView>
   );
 };
 export default LoginScreen;
