@@ -5,7 +5,9 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
-import { ImageViewer } from '@/components/ImageViewer';
+import ImageViewer from '@/components/ImageViewer';
+
+import Button from '@/components/Button';
 
 const PlaceholderImage = require('../../assets/images/react-logo.png');
 
@@ -14,6 +16,10 @@ export default function UploadScreen() {
         <ThemedView style={styles.container}>
             <ThemedView style={styles.imageContainer}>
                 <ImageViewer placeholderImageSource={PlaceholderImage} />
+            </ThemedView>
+            <ThemedView style={styles.footerContainer}>
+                <Button label="Choose a photo" theme="primary"/>
+                <Button label="Use this photo" />
             </ThemedView>
             <StatusBar style="auto" />
         </ThemedView>
@@ -30,5 +36,9 @@ const styles = StyleSheet.create({
     imageContainer: {
         flex: 1,
         paddingTop: 58,
-    }
+    },
+    footerContainer: {
+        flex: 1 / 3,
+        alignItems: 'center',
+      },
 });
