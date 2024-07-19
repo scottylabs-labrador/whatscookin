@@ -1,29 +1,35 @@
-import { StyleSheet, Pressable } from 'react-native';
+import { StyleSheet, Pressable, GestureResponderEvent } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { type IconProps } from '@expo/vector-icons/build/createIconSet';
 
+type OnPressHandler = (event: GestureResponderEvent) => void;
+
 type Props = {
+    icon?: "images-outline",
     label: string;
-    theme?: string
+    theme?: string,
+    onPress?: OnPressHandler
 };
 
 export default function Button({
+    icon,
     label,
-    theme
+    theme,
+    onPress
 }: Props) {
 
     if (theme === "primary") {
         return (
-            <ThemedView style={[styles.buttonContainer, { borderWidth: 4, borderColor: "#ffd33d", borderRadius: 18 }]}>
+            <ThemedView style={[styles.buttonContainer, { borderWidth: 3, borderColor: "#ffd33d", borderRadius: 18 }]}>
                 <Pressable
                     style={[styles.button, { backgroundColor: "#fff" }]}
-                    onPress={() => alert('You pressed a button.')}
+                    onPress={onPress}
                 >
                     <Ionicons
-                        name={"images-outline"}
+                        name={icon}
                         size={18}
                         color="#25292e"
                         style={styles.buttonIcon}
@@ -45,7 +51,7 @@ export default function Button({
 
 const styles = StyleSheet.create({
     buttonContainer: {
-        width: 320,
+        width: 300,
         height: 68,
         marginHorizontal: 20,
         alignItems: 'center',
