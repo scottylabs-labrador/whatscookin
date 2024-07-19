@@ -4,24 +4,45 @@ import { StyleSheet, Image } from 'react-native';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import ImageViewer from '@/components/ImageViewer';
-
 import Button from '@/components/Button';
+
+import * as ImagePicker from 'expo-image-picker';
+import { useState } from 'react';
 
 const PlaceholderImage = require('../../assets/images/react-logo.png');
 
 export default function UploadScreen() {
+    const [selectedImage, setSelectedImage] = useState("");
+
+    const pickImageAsync = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+          allowsEditing: true,
+          quality: 1,
+        });
+    
+        if (!result.canceled) {
+            setSelectedImage(result.assets[0].uri);
+        } else {
+          alert('You did not select any image.');
+        }
+      };
+
+
     return (
         <ThemedView style={styles.container}>
-            <ThemedView style={styles.imageContainer}>
-                <ImageViewer placeholderImageSource={PlaceholderImage} />
-            </ThemedView>
-            <ThemedView style={styles.footerContainer}>
-                <Button label="Choose a photo" theme="primary"/>
-                <Button label="Use this photo" />
-            </ThemedView>
-            <StatusBar style="auto" />
+            <SafeAreaView >
+                <ThemedView style={styles.imageContainer}>
+                    <ImageViewer placeholderImageSource={PlaceholderImage} selectedImage={selectedImage}/>
+                </ThemedView>
+                <ThemedView style={styles.footerContainer}>
+                    <Button label="Choose a photo" theme="primary" onPress={pickImageAsync}/>
+                    <Button label="Use this photo" />
+                </ThemedView>
+                <StatusBar style="auto" />
+            </SafeAreaView>
         </ThemedView>
     );
 }
@@ -40,5 +61,5 @@ const styles = StyleSheet.create({
     footerContainer: {
         flex: 1 / 3,
         alignItems: 'center',
-      },
+    },
 });
