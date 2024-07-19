@@ -1,4 +1,4 @@
-import { ClerkProvider, ClerkLoaded, SignedIn, SignedOut } from "@clerk/clerk-expo"
+import { ClerkProvider, ClerkLoaded } from "@clerk/clerk-expo"
 import * as SecureStore from 'expo-secure-store';
 
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
