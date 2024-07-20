@@ -25,9 +25,10 @@ export default function UploadScreen() {
     
         if (!result.canceled) {
             setSelectedImage(result.assets[0].uri);
-        } else {
-          alert('You did not select any image.');
-        }
+        } 
+        // else {
+        //   alert('You did not select any image.');
+        // }
       };
 
 
