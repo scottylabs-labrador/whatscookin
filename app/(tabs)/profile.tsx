@@ -16,7 +16,6 @@ import { Link } from "expo-router";
 export default function ProfileScreen() {
   const { user } = useUser();
 
-  console.log(user?.fullName);
 
   return (
     // <ParallaxScrollView
