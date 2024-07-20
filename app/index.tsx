@@ -43,7 +43,7 @@ const LoginScreen = () => {
   const { isSignedIn } = useAuth();
   if (isSignedIn) {
     return (
-      <Redirect href="profile" />
+      <Redirect href="feed" />
     )
   }
 
