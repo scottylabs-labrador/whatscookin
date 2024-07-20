@@ -32,6 +32,13 @@ export default function UploadScreen() {
       };
 
 
+    const useImage = () => {
+        // does stuff with Firebase ??
+        // add image info to Firebase
+        // etc
+    }
+
+
     return (
         <ThemedView style={styles.container}>
             <SafeAreaView >
@@ -40,7 +47,7 @@ export default function UploadScreen() {
                 </ThemedView>
                 <ThemedView style={styles.footerContainer}>
                     <Button label="Choose a photo" theme="primary" onPress={pickImageAsync}/>
-                    <Button label="Use this photo" />
+                    <Button label="Use this photo" onPress={useImage}/>
                 </ThemedView>
                 <StatusBar style="auto" />
             </SafeAreaView>

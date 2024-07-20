@@ -42,7 +42,7 @@ export default function Button({
 
     return (
         <ThemedView style={styles.buttonContainer}>
-            <Pressable style={styles.button} onPress={() => alert('You pressed a button.')}>
+            <Pressable style={styles.button} onPress={onPress}>
                 <ThemedText style={styles.buttonLabel}>{label}</ThemedText>
             </Pressable>
         </ThemedView>
