@@ -13,6 +13,8 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
+        tabBarStyle: { height: 80 },  // Adjust the height here
+        tabBarLabelStyle: { paddingBottom: 0 },  // Adjust label padding if needed
       }}>
       <Tabs.Screen
         name="feed"

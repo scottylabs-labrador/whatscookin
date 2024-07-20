@@ -9,30 +9,25 @@ import { TextBanner } from '@/components/TextBanner';
 
 import { SignedIn, SignedOut, useUser } from "@clerk/clerk-expo";
 import { Link } from "expo-router";
+import { StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ProfileScreen() {
   const { user } = useUser();
 
 
-  return (
-    // <ParallaxScrollView
-    // headerText={"hello " + user?.fullName ?? ""}
-    //   headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-    //   headerImage={<Ionicons size={310} name="code-slash" style={styles.headerImage} />}>
-
-    <BannerView
-      bannerText={"hello " + user?.fullName ?? ""}
-    >
-      <ThemedView>
-        <SignedIn>
-          {/* <TextBanner text={"hello " + user?.fullName ?? ""} /> */}
-          <ThemedText>Hello {user?.emailAddresses[0].emailAddress}</ThemedText>
-        </SignedIn>
-
-        {/* <SignedOut></SignedOut> */}
+  return (    
+      <ThemedView style={styles.container}>
+        <SafeAreaView>
+          <SignedIn>
+          <TextBanner
+      text={"hello " + user?.fullName ?? ""}
+    ></TextBanner>
+                </SignedIn>
+        </SafeAreaView>
+        <SafeAreaView>
+        </SafeAreaView>
       </ThemedView>
-    </BannerView>
-    // </ParallaxScrollView>
   );
 }
 
@@ -46,5 +41,9 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     gap: 8,
+  },
+  container: {
+    flex: 1,
+    padding: 20,
   },
 });
