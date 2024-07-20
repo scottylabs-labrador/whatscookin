@@ -21,7 +21,16 @@ export default function TabLayout() {
         options={{
           title: 'Feed',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'person' : 'person-outline'} color={color} />
+            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="upload"
+        options={{
+          title: 'Upload',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'add-circle' : 'add-circle-outline'} color={color} />
           ),
         }}
       />
@@ -30,40 +39,10 @@ export default function TabLayout() {
         options={{
           title: 'Profile',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+            <TabBarIcon name={focused ? 'person' : 'person-outline'} color={color} />
           ),
         }}
       />
-      
-      {/* hide Login page from tab bar */}
-      {/* <Tabs.Screen
-        name="login"
-        options={{
-        title: 'login',
-        tabBarIcon: ({ color, focused }) => (
-          <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-        ),
-        }}
-      /> */}
-      {/* TODO: DELETE THE BELOW CODE FOR FINAL BOILERPLATE */}
-      {/* <Tabs.Screen
-        name="index - default"
-        options={{
-          href: null,
-        }}
-      />
-      <Tabs.Screen
-        name="explore - default"
-        options={{
-          href: null,
-        }}
-      />
-      <Tabs.Screen
-        name="layout - default"
-        options={{
-          href: null,
-        }}
-      /> */}
     </Tabs>
   );
 }
