@@ -1,4 +1,4 @@
-import { StyleSheet, Image, ImageSourcePropType } from 'react-native';
+import { StyleSheet, Image, ImageSourcePropType, Dimensions } from 'react-native';
 
 import type { PropsWithChildren } from 'react';
 
@@ -20,8 +20,8 @@ export default function ImageViewer({
 
 const styles = StyleSheet.create({
   image: {
-    width: 320,
-    height: 440,
+    width: '100%',
+    height: '100%', 
     borderRadius: 18,
   },
 });

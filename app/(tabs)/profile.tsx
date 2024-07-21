@@ -9,25 +9,24 @@ import { TextBanner } from '@/components/TextBanner';
 
 import { SignedIn, SignedOut, useUser } from "@clerk/clerk-expo";
 import { Link } from "expo-router";
-import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ProfileScreen() {
   const { user } = useUser();
 
 
-  return (    
-      <ThemedView style={styles.container}>
-        <SafeAreaView>
-          <SignedIn>
+  return (
+    <ThemedView style={styles.container}>
+      <SafeAreaView>
+        <SignedIn>
           <TextBanner
-      text={"hello " + user?.fullName ?? ""}
-    ></TextBanner>
-                </SignedIn>
-        </SafeAreaView>
-        <SafeAreaView>
-        </SafeAreaView>
-      </ThemedView>
+            text={"hello " + user?.fullName ?? ""}
+          ></TextBanner>
+        </SignedIn>
+      </SafeAreaView>
+      <SafeAreaView>
+      </SafeAreaView>
+    </ThemedView>
   );
 }
 
@@ -44,6 +43,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    padding: 20,
+    // padding: 20,
   },
 });
