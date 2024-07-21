@@ -11,6 +11,8 @@ type Props = {
     icon?: "images-outline",
     label: string;
     theme?: string,
+    width: number,
+    height: number,
     onPress?: OnPressHandler
 };
 
@@ -18,12 +20,14 @@ export default function Button({
     icon,
     label,
     theme,
+    width, 
+    height,
     onPress
 }: Props) {
 
     if (theme === "primary") {
         return (
-            <ThemedView style={[styles.buttonContainer, { borderWidth: 3, borderColor: "#ffd33d", borderRadius: 18 }]}>
+            <ThemedView style={[styles.buttonContainer, { borderWidth: 3, borderColor: "#ffd33d", borderRadius: 18, width: width, height: height }]}>
                 <Pressable
                     style={[styles.button, { backgroundColor: "#fff" }]}
                     onPress={onPress}
@@ -41,7 +45,7 @@ export default function Button({
     }
 
     return (
-        <ThemedView style={styles.buttonContainer}>
+        <ThemedView style={[styles.buttonContainer, {width: width, height: height}]}>
             <Pressable style={styles.button} onPress={onPress}>
                 <ThemedText style={styles.buttonLabel}>{label}</ThemedText>
             </Pressable>
@@ -51,11 +55,10 @@ export default function Button({
 
 const styles = StyleSheet.create({
     buttonContainer: {
-        width: 300,
         height: 68,
         marginHorizontal: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
+        // alignItems: 'center',
+        // justifyContent: 'center',
         padding: 3,
     },
     button: {
