@@ -1,6 +1,9 @@
 // components/TextBanner.tsx
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { ThemedView } from '@/components/ThemedView';
+import { ThemedText } from '@/components/ThemedText';
+
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 type TextBannerProps = {
@@ -9,18 +12,17 @@ type TextBannerProps = {
 
 export const TextBanner = ({ text }: TextBannerProps) => {
   return (
-    <View style={styles.bannerContainer}>
+    <ThemedView style={styles.bannerContainer}>
       {/* <Ionicons name="ios-information-circle" size={24} color="black" style={styles.icon} /> */}
-      <Text style={styles.bannerText}>{text}</Text>
-    </View>
+      <ThemedText style={styles.bannerText}>{text}</ThemedText>
+    </ThemedView>
   );
 };
 
 const styles = StyleSheet.create({
   bannerContainer: {
-    paddingTop: 25,
-    paddingBottom: 15,
-    backgroundColor: '#f8f8f8',
+    padding: 10,
+    // backgroundColor: '#f8f8f8',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
