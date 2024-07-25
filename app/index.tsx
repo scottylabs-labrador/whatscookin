@@ -1,11 +1,13 @@
 import React from "react";
 import * as WebBrowser from "expo-web-browser";
-import { Text, View, Button } from "react-native";
+import { Text, View, Button, StyleSheet, useColorScheme } from "react-native";
 import { Link, Redirect, Stack } from "expo-router";
 import { useAuth, useOAuth } from "@clerk/clerk-expo";
 import * as Linking from "expo-linking"
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemedView } from "@/components/ThemedView";
+import { ThemedText } from "@/components/ThemedText";
+import SigninBtn from "@/components/SigninBtn";
 
 export const useWarmUpBrowser = () => {
   React.useEffect(() => {
@@ -22,6 +24,7 @@ WebBrowser.maybeCompleteAuthSession();
 
 const LoginScreen = () => {
   useWarmUpBrowser();
+  const theme = useColorScheme() ?? 'light';
 
   const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
 
@@ -48,16 +51,41 @@ const LoginScreen = () => {
   }
 
   return (
-    <ThemedView style={{flex: 1}}>
+    <ThemedView style={styles.container}>
       <SafeAreaView>
-        <View>
-          <Link href="/">
+        <View style={styles.container}>
+          {/* <Link href="/">
             <Text>Home</Text>
-          </Link>
-          <Button title="Sign in with Google" onPress={onPress} />
+          </Link> */}
+          <ThemedText style={styles.heading} type='title'>Login</ThemedText>
+          <ThemedText style={styles.centerText}>Welcome to InstaPlate!</ThemedText>
+          <View style={styles.btnContainer}>
+            <SigninBtn theme={theme} width={250} height={88} onPress={onPress}/>
+          </View>
+          
         </View>
       </SafeAreaView>
     </ThemedView>
   );
 };
 export default LoginScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    position: 'relative',
+  },
+  heading: {
+    textAlign: 'center',
+    marginTop: '28%',
+    marginBottom: '10%',
+  },
+  centerText: {
+    textAlign: 'center',
+  },
+  btnContainer: {
+    position: "absolute",
+    top: '50%',
+  }
+})
