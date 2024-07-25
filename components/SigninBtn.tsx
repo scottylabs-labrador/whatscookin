@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { StyleSheet, Pressable, GestureResponderEvent, Image } from 'react-native';
+import React from "react";
+import { Pressable, GestureResponderEvent, Image } from 'react-native';
 import { ThemedView } from '@/components/ThemedView';
-import { ThemedText } from "./ThemedText";
+// https://developers.google.com/identity/branding-guidelines
 
 type OnPressHandler = (event: GestureResponderEvent) => void;
 
