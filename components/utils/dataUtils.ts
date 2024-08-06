@@ -21,10 +21,10 @@ export async function getPhotos(db:any) {
     const photosCol = collection(db, 'Photos');
     const photoSnapshot = await getDocs(photosCol);
     const photoList = photoSnapshot.docs.map(async(doc) => ({
-            reference: await getPhotoURL(doc.id),
-            uploadTime: doc.data().uploadTime,
-            userId: doc.data().userId,
-        }));
+        reference: await getPhotoURL(doc.id),
+        uploadTime: doc.data().uploadTime,
+        userId: doc.data().userId,
+    }));
     return photoList;
 }
 
@@ -35,6 +35,6 @@ const getSingleDoc = async() => {
         console.log("Document data:", docSnap.data());
       } else {
         // docSnap.data() will be undefined in this case
-        console.log("No such document!");
+        console.log("No such document");
     }
 }

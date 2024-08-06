@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Photo } from "./utils/types";
 import { Image, View, StyleSheet } from "react-native";
 import { ThemedText } from "./ThemedText";
 import { ThemedView } from "./ThemedView";
 
-import {Timestamp} from "firebase/firestore";
-import { Colors } from "@/constants/Colors";
 
 interface PostProps {
     item: Photo,

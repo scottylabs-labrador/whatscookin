@@ -7,7 +7,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { db } from '@/firebaseConfig';
 
 import { useEffect, useState } from 'react';
-import { Photo } from '@/components/utils/types';
 import { ScrollView, StyleSheet } from 'react-native';
 import { getPhotos, getPhotoURL } from '@/components/utils/dataUtils';
 import TextBanner from '@/components/TextBanner';
@@ -15,7 +14,8 @@ import TextBanner from '@/components/TextBanner';
 
 
 
-
+// Note: timestamp in firebase is different from Date object, need to convert.
+// see Post.tsx for details
 // https://stackoverflow.com/questions/52247445/how-do-i-convert-a-firestore-date-timestamp-to-a-js-date
 
 export default function FeedScreen() {
@@ -38,14 +38,6 @@ export default function FeedScreen() {
         
         
     },[])
-    
-    
-
-    // const Photo = {
-    //     reference: "https://firebasestorage.googleapis.com/v0/b/boilerplate-7545b.appspot.com/o/images%2F09ef0f36-c512-4626-a967-765b148478fc?alt=media&token=722f2639-78f1-4e97-8109-717b7508f230",
-    //     uploadTime: new Date('2024-08-16'),
-    //     userId: 'qge'
-    // }
 
     return (
         <ThemedView style={{flex:1}}>
