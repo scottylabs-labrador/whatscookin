@@ -21,11 +21,16 @@ export const getPhotoURL = async (docId: string) => {
 export async function getPhotos(db:any) {
     const photosCol = collection(db, 'Photos');
     const photoSnapshot = await getDocs(photosCol);
-    const photoList = photoSnapshot.docs.map(async(doc) => ({
+    
+    // Map through the documents and await each promise
+    let photoList = await Promise.all(photoSnapshot.docs.map(async (doc) => ({
         reference: await getPhotoURL(doc.id),
         uploadTime: doc.data().uploadTime,
         userId: doc.data().userId,
-    }));
+    })));
+
+    // Sort the resolved photoList by uploadTime in descending order
+    photoList = photoList.sort((a, b) => b.uploadTime - a.uploadTime);
     return photoList;
 }
 
