@@ -18,9 +18,9 @@ import TextBanner from '@/components/TextBanner';
 
 import { useUser } from "@clerk/clerk-expo";
 
-import { ref, getStorage, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { db } from '@/firebaseConfig';
-import { doc, setDoc, Timestamp } from "firebase/firestore"; 
+import { arrayUnion, doc, setDoc, Timestamp } from "firebase/firestore";
+import { ref, getStorage, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 const { width, height } = Dimensions.get('window');
 // console.log(width);
@@ -30,7 +30,8 @@ const PlaceholderImage = require('../../assets/images/react-logo.png');
 
 export default function UploadScreen() {
     const { user } = useUser();
-    console.log(user?.emailAddresses[0]["emailAddress"]);
+    const username = user?.emailAddresses[0]["emailAddress"];
+    // console.log(user?.emailAddresses[0]["emailAddress"]);
 
     const [selectedImage, setSelectedImage] = useState("");
 
@@ -66,9 +67,13 @@ export default function UploadScreen() {
 
             await setDoc(doc(db, "Photos", imgName), {
                 reference: `/boilerplate-7545b.appspot.com/images/${imgName}`,
-                userId: user?.emailAddresses[0]["emailAddress"],
+                userId: username,
                 uploadTime: Timestamp.now()
-              });
+            });
+
+            await setDoc(doc(db, "Users", username ?? ''), {
+                Posts: arrayUnion(imgName)
+            }, { merge: true });
         }).catch((error) => {
             console.error('Error uploading image:', error);
         });
