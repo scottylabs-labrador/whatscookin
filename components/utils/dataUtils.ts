@@ -1,7 +1,7 @@
 import React from "react";
 
 import { db } from '@/firebaseConfig';
-import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocsFromServer } from 'firebase/firestore';
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 export const getPhotoURL = async (docId: string) => {
@@ -18,9 +18,9 @@ export const getPhotoURL = async (docId: string) => {
     
 }
 
-export async function getPhotos(db:any) {
+export async function getPhotos(db:any, currentUsername:String) {
     const photosCol = collection(db, 'Photos');
-    const photoSnapshot = await getDocs(photosCol);
+    const photoSnapshot = await getDocsFromServer(photosCol);
     
     // Map through the documents and await each promise
     let photoList = await Promise.all(photoSnapshot.docs.map(async (doc) => ({
@@ -28,6 +28,9 @@ export async function getPhotos(db:any) {
         uploadTime: doc.data().uploadTime,
         userId: doc.data().userId,
     })));
+
+    // Filter out photos where userId matches current user's username (aka posts by the user themself)
+    photoList = photoList.filter(photo => photo.userId !== currentUsername);
 
     // Sort the resolved photoList by uploadTime in descending order
     photoList = photoList.sort((a, b) => b.uploadTime - a.uploadTime);
