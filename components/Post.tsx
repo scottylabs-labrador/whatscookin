@@ -12,7 +12,6 @@ interface PostProps {
 // 'https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg'
 
 const Post = ({item}:PostProps) => {
-    const [url, setUrl] = useState<string>(item.reference);
     // Do this to get the timeStamp
     // const [timestamp, setTimestamp] = useState();
     // if (item.uploadTime) {
@@ -28,7 +27,7 @@ const Post = ({item}:PostProps) => {
             <ThemedView style={styles.imageContainer}>
                 <Image 
                     style={styles.image}
-                    source={{uri: url}}
+                    source={{uri: item.reference}}
                     resizeMode="contain"
                 />
             </ThemedView>
