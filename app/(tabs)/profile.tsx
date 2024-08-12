@@ -14,12 +14,23 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Button from '@/components/Button';
 
 import { useClerk } from '@clerk/clerk-expo';
+import GridView from '@/components/GridView';
 
+import { db } from '@/firebaseConfig';
+import { getGridPhotos } from '@/components/utils/dataUtils';
+
+import { useState, useCallback } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function ProfileScreen() {
   const { user } = useUser();
+  const username = user?.emailAddresses[0]["emailAddress"];
+
   const { signOut } = useClerk();
   const router = useRouter();
+
+  const [photos, setPhotos] = useState<any>([]);
+
 
   // Function to log out user
   const handleLogout = async () => {
@@ -32,6 +43,18 @@ export default function ProfileScreen() {
     }
   };
 
+  useFocusEffect(
+    useCallback(() => {
+      const fetchPhotos = async () => {
+        const data = await getGridPhotos(db, username ?? "");
+        console.log(data);
+        setPhotos(data);
+      }
+
+      fetchPhotos();
+    }, []) // Empty dependency array 
+  );
+
   return (
     <ThemedView style={styles.container}>
       <SafeAreaView>
@@ -40,6 +63,7 @@ export default function ProfileScreen() {
             text={"hello " + user?.fullName ?? ""}
           ></TextBanner>
           <Button label="Logout" onPress={handleLogout} width={100 * 0.8} height={68} />
+          <GridView data={photos} />
         </SignedIn>
       </SafeAreaView>
       <SafeAreaView>
