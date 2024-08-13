@@ -48,8 +48,10 @@ export default function ProfileScreen() {
 
   useFocusEffect(
     useCallback(() => {
-      getProfilePhoto({db, currentUsername:username, setSelectedImage});
       const fetchPhotos = async () => {
+        // check to see if there is a profile image uploaded, if so set image
+        getProfilePhoto({db, currentUsername:username, setSelectedImage});
+        // get photos from Posts
         const data = await getGridPhotos(db, username ?? "");
         console.log(data);
         setPhotos(data);
